@@ -1,18 +1,18 @@
 const moveRovers = (input: string): string => {
-  const parsedInput = input.split('\n');
+  const [, roverStartPosition, roverInstructions] = input.split('\n');
 
-  if (parsedInput.length === 1) {
+  if (!roverStartPosition) {
     return '';
   }
 
-  if (parsedInput[2]) {
-    if (parsedInput[2] === 'R') {
+  if (roverInstructions) {
+    if (roverInstructions === 'R') {
       return '0 0 E';
     }
     return '0 0 W';
   }
 
-  return parsedInput[1];
+  return roverStartPosition;
 };
 
 export default moveRovers;
