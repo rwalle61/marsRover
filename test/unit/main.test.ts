@@ -44,7 +44,7 @@ describe('main', () => {
   });
 
   describe('when input has one rover with instructions', () => {
-    it('should spin the rover left (start facing North)', () => {
+    it('should spin the rover left (North to West)', () => {
       const input = `
 5 5
 0 0 N
@@ -55,7 +55,7 @@ L
       expect(output).toBe('0 0 W');
     });
 
-    it('should spin the rover left (start facing East)', () => {
+    it('should spin the rover left (East to North)', () => {
       const input = `
 5 5
 0 0 E
@@ -66,7 +66,7 @@ L
       expect(output).toBe('0 0 N');
     });
 
-    it('should spin the rover left (start facing South)', () => {
+    it('should spin the rover left (South to East)', () => {
       const input = `
 5 5
 0 0 S
@@ -77,7 +77,7 @@ L
       expect(output).toBe('0 0 E');
     });
 
-    it('should spin the rover left (start facing West)', () => {
+    it('should spin the rover left (West to South)', () => {
       const input = `
 5 5
 0 0 W
@@ -99,7 +99,7 @@ L
       expect(output).toBe('1 0 W');
     });
 
-    it('should spin the rover right (start facing North)', () => {
+    it('should spin the rover right (North to East)', () => {
       const input = `
 5 5
 0 0 N
@@ -110,7 +110,7 @@ R
       expect(output).toBe('0 0 E');
     });
 
-    it('should spin the rover right (start facing East)', () => {
+    it('should spin the rover right (East to South)', () => {
       const input = `
 5 5
 0 0 E
@@ -121,7 +121,7 @@ R
       expect(output).toBe('0 0 S');
     });
 
-    it('should spin the rover right (start facing South)', () => {
+    it('should spin the rover right (South to West)', () => {
       const input = `
 5 5
 0 0 S
@@ -132,7 +132,7 @@ R
       expect(output).toBe('0 0 W');
     });
 
-    it('should spin the rover right (start facing West)', () => {
+    it('should spin the rover right (West to North)', () => {
       const input = `
 5 5
 0 0 W
