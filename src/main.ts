@@ -1,5 +1,5 @@
 const moveRovers = (input: string): string => {
-  if (input === '5 5') {
+  if (input.split('\n').length === 1) {
     return '';
   }
   return '0 0 N';

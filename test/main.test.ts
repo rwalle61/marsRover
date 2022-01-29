@@ -2,9 +2,17 @@ import moveRovers from '../src/main';
 
 describe('Acceptance', () => {
   describe('when input has no rovers', () => {
-    const input = '5 5';
-
     it('should show no rovers', () => {
+      const input = '5 5';
+
+      const output = moveRovers(input);
+
+      expect(output).toBe('');
+    });
+
+    it('should show no rovers (different input)', () => {
+      const input = '0 0';
+
       const output = moveRovers(input);
 
       expect(output).toBe('');
