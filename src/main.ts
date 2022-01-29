@@ -2,7 +2,7 @@ const moveRovers = (input: string): string => {
   if (input.split('\n').length === 1) {
     return '';
   }
-  return '0 0 N';
+  return input.split('\n')[1];
 };
 
 export default moveRovers;
