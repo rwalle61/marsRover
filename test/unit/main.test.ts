@@ -187,7 +187,7 @@ RLRLR
       expect(output).toBe('0 0 E');
     });
 
-    it('should move the rover once', () => {
+    it('should move the rover once (start facing North)', () => {
       const input = `
 5 5
 0 0 N
@@ -196,6 +196,17 @@ M
       const output = moveRovers(input);
 
       expect(output).toBe('0 1 N');
+    });
+
+    it('should move the rover once (start facing East)', () => {
+      const input = `
+5 5
+0 0 E
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('1 0 E');
     });
 
     it('should move the rover once (different x start location)', () => {
@@ -218,17 +229,6 @@ M
       const output = moveRovers(input);
 
       expect(output).toBe('0 3 N');
-    });
-
-    it('should move the rover once (different start direction)', () => {
-      const input = `
-5 5
-0 0 E
-M
-`.trim();
-      const output = moveRovers(input);
-
-      expect(output).toBe('1 0 E');
     });
 
     it('should move the rover twice', () => {
