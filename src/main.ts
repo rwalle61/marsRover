@@ -39,12 +39,9 @@ const moveRovers = (input: string): string => {
     });
 
     if (roverInstructions[0] === 'M') {
-      const startLocationX = startLocation[0];
-      const startLocationY = startLocation[2];
-      if (startLocationY === '2') {
-        return `${startLocationX} 3 N`;
-      }
-      return `${startLocationX} 1 N`;
+      const startLocationX = parseInt(startLocation[0], 10);
+      const startLocationY = parseInt(startLocation[2], 10);
+      return `${startLocationX} ${startLocationY + 1} N`;
     }
 
     return `${startLocation} ${currentDirection}`;
