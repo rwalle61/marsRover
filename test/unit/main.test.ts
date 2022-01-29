@@ -220,6 +220,17 @@ M
       expect(output).toBe('0 0 S');
     });
 
+    it('should move the rover once (start facing West)', () => {
+      const input = `
+5 5
+1 0 W
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 W');
+    });
+
     it('should move the rover once (different x start location)', () => {
       const input = `
 5 5

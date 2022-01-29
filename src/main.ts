@@ -35,6 +35,8 @@ const moveRovers = (input: string): string => {
       } else if (roverInstruction === 'M') {
         if (currentDirection === 'E') {
           currentX += 1;
+        } else if (currentDirection === 'W') {
+          currentX -= 1;
         } else if (currentDirection === 'N') {
           currentY += 1;
         } else {
