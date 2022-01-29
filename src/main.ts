@@ -38,16 +38,13 @@ const moveRovers = (input: string): string => {
       currentDirection = spinRover(currentDirection, roverInstruction);
     });
 
+    const startX = parseInt(startLocation[0], 10);
+    let currentY = parseInt(startLocation[2], 10);
+
     if (roverInstructions[0] === 'M') {
-      const startX = parseInt(startLocation[0], 10);
-      let currentY = parseInt(startLocation[2], 10);
-      currentY += 1;
-      if (roverInstructions[1] === 'M') {
+      [...roverInstructions].forEach(() => {
         currentY += 1;
-      }
-      if (roverInstructions[2] === 'M') {
-        currentY += 1;
-      }
+      });
       return `${startX} ${currentY} N`;
     }
 
