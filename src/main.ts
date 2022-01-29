@@ -1,3 +1,9 @@
+enum RoverInstruction {
+  SpinRight = 'R',
+  SpinLeft = 'L',
+  MoveForwards = 'M',
+}
+
 enum Direction {
   North = 'N',
   East = 'E',
@@ -35,11 +41,11 @@ const moveRovers = (input: string): string => {
     let currentDirection = roverStartPosition[4];
 
     [...roverInstructions].forEach((roverInstruction) => {
-      if (roverInstruction === 'R') {
+      if (roverInstruction === RoverInstruction.SpinRight) {
         currentDirection = spinRoverRight[currentDirection];
-      } else if (roverInstruction === 'L') {
+      } else if (roverInstruction === RoverInstruction.SpinLeft) {
         currentDirection = spinRoverLeft[currentDirection];
-      } else if (roverInstruction === 'M') {
+      } else if (roverInstruction === RoverInstruction.MoveForwards) {
         if (currentDirection === Direction.East) {
           currentX += 1;
         } else if (currentDirection === Direction.West) {
