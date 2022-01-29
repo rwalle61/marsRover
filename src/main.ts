@@ -19,6 +19,9 @@ const spinRover = (
   if (roverInstructions === 'RR') {
     return 'S';
   }
+  if (roverInstructions === 'RL') {
+    return 'N';
+  }
   if (roverInstructions === 'R') {
     return spinRoverRight[startDirection];
   }
