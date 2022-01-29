@@ -8,19 +8,21 @@ const moveRovers = (input: string): string => {
   if (roverInstructions) {
     const startDirection = roverStartPosition[4];
 
+    const startLocation = roverStartPosition.substring(0, 4);
+
     if (roverInstructions === 'R') {
-      return '0 0 E';
+      return `${startLocation}E`;
     }
     if (startDirection === 'E') {
-      return '0 0 N';
+      return `${startLocation}N`;
     }
     if (startDirection === 'S') {
-      return '0 0 E';
+      return `${startLocation}E`;
     }
     if (startDirection === 'W') {
-      return '0 0 S';
+      return `${startLocation}S`;
     }
-    return '0 0 W';
+    return `${startLocation}W`;
   }
 
   return roverStartPosition;
