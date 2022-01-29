@@ -142,5 +142,16 @@ R
 
       expect(output).toBe('0 0 N');
     });
+
+    it('should spin the rover 2 times (North to South)', () => {
+      const input = `
+5 5
+0 0 N
+RR
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 S');
+    });
   });
 });

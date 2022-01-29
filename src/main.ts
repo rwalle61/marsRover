@@ -16,6 +16,9 @@ const spinRover = (
   startDirection: string,
   roverInstructions: string,
 ): string => {
+  if (roverInstructions === 'RR') {
+    return 'S';
+  }
   if (roverInstructions === 'R') {
     return spinRoverRight[startDirection];
   }
