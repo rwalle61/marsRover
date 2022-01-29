@@ -1,7 +1,18 @@
 import moveRovers from '../src/main';
 
 describe('Acceptance', () => {
-  describe('given the example test input', () => {
+  describe('when input has no rovers', () => {
+    const input = '5 5';
+
+    it('should show no rovers', () => {
+      const output = moveRovers(input);
+
+      expect(output).toBe('');
+    });
+  });
+
+  // eslint-disable-next-line jest/no-disabled-tests
+  describe.skip('when input is the example test input', () => {
     const input = `
 5 5
 1 2 N
