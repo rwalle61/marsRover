@@ -1,15 +1,22 @@
+enum Direction {
+  North = 'N',
+  East = 'E',
+  South = 'S',
+  West = 'W',
+}
+
 const spinRoverLeft = {
-  N: 'W',
-  E: 'N',
-  S: 'E',
-  W: 'S',
+  [Direction.North]: Direction.West,
+  [Direction.East]: Direction.North,
+  [Direction.South]: Direction.East,
+  [Direction.West]: Direction.South,
 };
 
 const spinRoverRight = {
-  N: 'E',
-  E: 'S',
-  S: 'W',
-  W: 'N',
+  [Direction.North]: Direction.East,
+  [Direction.East]: Direction.South,
+  [Direction.South]: Direction.West,
+  [Direction.West]: Direction.North,
 };
 
 const moveRovers = (input: string): string => {
@@ -33,11 +40,11 @@ const moveRovers = (input: string): string => {
       } else if (roverInstruction === 'L') {
         currentDirection = spinRoverLeft[currentDirection];
       } else if (roverInstruction === 'M') {
-        if (currentDirection === 'E') {
+        if (currentDirection === Direction.East) {
           currentX += 1;
-        } else if (currentDirection === 'W') {
+        } else if (currentDirection === Direction.West) {
           currentX -= 1;
-        } else if (currentDirection === 'N') {
+        } else if (currentDirection === Direction.North) {
           currentY += 1;
         } else {
           currentY -= 1;
