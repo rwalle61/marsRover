@@ -197,5 +197,16 @@ M
 
       expect(output).toBe('0 1 N');
     });
+
+    it('should move the rover once (different x start location)', () => {
+      const input = `
+5 5
+2 0 N
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('2 1 N');
+    });
   });
 });
