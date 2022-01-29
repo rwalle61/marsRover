@@ -10,7 +10,10 @@ const spinRover = (
   roverInstructions: string,
 ): string => {
   if (roverInstructions === 'R') {
-    return 'E';
+    if (startDirection === 'N') {
+      return 'E';
+    }
+    return 'S';
   }
   return spinRoverLeft[startDirection];
 };
