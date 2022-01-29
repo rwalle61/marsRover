@@ -230,5 +230,16 @@ MM
 
       expect(output).toBe('0 2 N');
     });
+
+    it('should move the rover 3 times', () => {
+      const input = `
+5 5
+0 0 N
+MMM
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 3 N');
+    });
   });
 });

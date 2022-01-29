@@ -45,6 +45,9 @@ const moveRovers = (input: string): string => {
       if (roverInstructions[1] === 'M') {
         currentY += 1;
       }
+      if (roverInstructions[2] === 'M') {
+        currentY += 1;
+      }
       return `${startX} ${currentY} N`;
     }
 
