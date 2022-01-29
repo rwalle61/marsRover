@@ -32,12 +32,15 @@ const moveRovers = (input: string): string => {
   if (roverInstructions) {
     const startLocation = roverStartPosition.substring(0, 3);
 
-    const startDirection = roverStartPosition[4];
+    let currentDirection = roverStartPosition[4];
 
-    let currentDirection = spinRover(startDirection, roverInstructions[0]);
+    currentDirection = spinRover(currentDirection, roverInstructions[0]);
 
-    if (roverInstructions.length === 2) {
+    if (roverInstructions.length >= 2) {
       currentDirection = spinRover(currentDirection, roverInstructions[1]);
+    }
+    if (roverInstructions.length === 3) {
+      currentDirection = spinRover(currentDirection, roverInstructions[2]);
     }
 
     return `${startLocation} ${currentDirection}`;

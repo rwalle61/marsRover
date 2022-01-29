@@ -143,7 +143,7 @@ R
       expect(output).toBe('0 0 N');
     });
 
-    it('should spin the rover 2 times (right then right)', () => {
+    it('should spin the rover 2 times (right right)', () => {
       const input = `
 5 5
 0 0 N
@@ -154,7 +154,7 @@ RR
       expect(output).toBe('0 0 S');
     });
 
-    it('should spin the rover 2 times (right then left)', () => {
+    it('should spin the rover 2 times (right left)', () => {
       const input = `
 5 5
 0 0 N
@@ -163,6 +163,17 @@ RL
       const output = moveRovers(input);
 
       expect(output).toBe('0 0 N');
+    });
+
+    it('should spin the rover 3 times (right right right)', () => {
+      const input = `
+5 5
+0 0 N
+RRR
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 W');
     });
   });
 });
