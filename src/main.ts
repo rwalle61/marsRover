@@ -22,7 +22,7 @@ const moveRovers = (input: string): string => {
   if (roverInstructions) {
     const startLocation = roverStartPosition.substring(0, 3);
 
-    const startX = parseInt(startLocation[0], 10);
+    let currentX = parseInt(startLocation[0], 10);
     let currentY = parseInt(startLocation[2], 10);
 
     let currentDirection = roverStartPosition[4];
@@ -33,11 +33,15 @@ const moveRovers = (input: string): string => {
       } else if (roverInstruction === 'L') {
         currentDirection = spinRoverLeft[currentDirection];
       } else if (roverInstruction === 'M') {
-        currentY += 1;
+        if (currentDirection === 'E') {
+          currentX += 1;
+        } else {
+          currentY += 1;
+        }
       }
     });
 
-    return `${startX} ${currentY} ${currentDirection}`;
+    return `${currentX} ${currentY} ${currentDirection}`;
   }
 
   return roverStartPosition;
