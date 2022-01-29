@@ -77,6 +77,17 @@ L
       expect(output).toBe('0 0 E');
     });
 
+    it('should spin the rover left (start facing West)', () => {
+      const input = `
+5 5
+0 0 W
+L
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 S');
+    });
+
     it('should spin the rover right', () => {
       const input = `
 5 5

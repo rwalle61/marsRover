@@ -17,6 +17,9 @@ const moveRovers = (input: string): string => {
     if (startDirection === 'S') {
       return '0 0 E';
     }
+    if (startDirection === 'W') {
+      return '0 0 S';
+    }
     return '0 0 W';
   }
 
