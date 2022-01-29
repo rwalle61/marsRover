@@ -186,5 +186,16 @@ RLRLR
 
       expect(output).toBe('0 0 E');
     });
+
+    it('should move the rover once', () => {
+      const input = `
+5 5
+0 0 N
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 1 N');
+    });
   });
 });

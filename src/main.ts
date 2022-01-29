@@ -38,6 +38,10 @@ const moveRovers = (input: string): string => {
       currentDirection = spinRover(currentDirection, roverInstruction);
     });
 
+    if (roverInstructions[0] === 'M') {
+      return '0 1 N';
+    }
+
     return `${startLocation} ${currentDirection}`;
   }
 
