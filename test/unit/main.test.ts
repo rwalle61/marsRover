@@ -54,5 +54,16 @@ L
 
       expect(output).toBe('0 0 W');
     });
+
+    it('should spin the rover right', () => {
+      const input = `
+5 5
+0 0 N
+R
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 E');
+    });
   });
 });

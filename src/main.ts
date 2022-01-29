@@ -6,6 +6,9 @@ const moveRovers = (input: string): string => {
   }
 
   if (parsedInput[2]) {
+    if (parsedInput[2] === 'R') {
+      return '0 0 E';
+    }
     return '0 0 W';
   }
 
