@@ -120,5 +120,16 @@ R
 
       expect(output).toBe('0 0 S');
     });
+
+    it('should spin the rover right (start facing South)', () => {
+      const input = `
+5 5
+0 0 S
+R
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 W');
+    });
   });
 });
