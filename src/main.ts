@@ -9,6 +9,7 @@ const spinRoverRight = {
   N: 'E',
   E: 'S',
   S: 'W',
+  W: 'N',
 };
 
 const spinRover = (
