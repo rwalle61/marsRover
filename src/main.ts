@@ -5,15 +5,17 @@ const spinRoverLeft = {
   W: 'S',
 };
 
+const spinRoverRight = {
+  N: 'E',
+  E: 'S',
+};
+
 const spinRover = (
   startDirection: string,
   roverInstructions: string,
 ): string => {
   if (roverInstructions === 'R') {
-    if (startDirection === 'N') {
-      return 'E';
-    }
-    return 'S';
+    return spinRoverRight[startDirection];
   }
   return spinRoverLeft[startDirection];
 };
