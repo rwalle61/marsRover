@@ -12,16 +12,6 @@ const spinRoverRight = {
   W: 'N',
 };
 
-const spinRover = (
-  startDirection: string,
-  roverInstruction: string,
-): string => {
-  if (roverInstruction === 'R') {
-    return spinRoverRight[startDirection];
-  }
-  return spinRoverLeft[startDirection];
-};
-
 const moveRovers = (input: string): string => {
   const [, roverStartPosition, roverInstructions] = input.split('\n');
 
@@ -32,23 +22,22 @@ const moveRovers = (input: string): string => {
   if (roverInstructions) {
     const startLocation = roverStartPosition.substring(0, 3);
 
-    let currentDirection = roverStartPosition[4];
-
-    [...roverInstructions].forEach((roverInstruction) => {
-      currentDirection = spinRover(currentDirection, roverInstruction);
-    });
-
     const startX = parseInt(startLocation[0], 10);
     let currentY = parseInt(startLocation[2], 10);
 
-    if (roverInstructions[0] === 'M') {
-      [...roverInstructions].forEach(() => {
-        currentY += 1;
-      });
-      return `${startX} ${currentY} N`;
-    }
+    let currentDirection = roverStartPosition[4];
 
-    return `${startLocation} ${currentDirection}`;
+    [...roverInstructions].forEach((roverInstruction) => {
+      if (roverInstruction === 'R') {
+        currentDirection = spinRoverRight[currentDirection];
+      } else if (roverInstruction === 'L') {
+        currentDirection = spinRoverLeft[currentDirection];
+      } else if (roverInstruction === 'M') {
+        currentY += 1;
+      }
+    });
+
+    return `${startX} ${currentY} ${currentDirection}`;
   }
 
   return roverStartPosition;

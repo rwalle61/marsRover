@@ -241,5 +241,16 @@ MMM
 
       expect(output).toBe('0 3 N');
     });
+
+    it('should move then turn the rover right', () => {
+      const input = `
+5 5
+0 0 N
+MR
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 1 E');
+    });
   });
 });
