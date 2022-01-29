@@ -42,4 +42,17 @@ describe('main', () => {
       expect(output).toBe('1 0 N');
     });
   });
+
+  describe('when input has one rover with instructions', () => {
+    it('should spin the rover left', () => {
+      const input = `
+5 5
+0 0 N
+L
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 W');
+    });
+  });
 });
