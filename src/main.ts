@@ -14,15 +14,9 @@ const spinRoverRight = {
 
 const spinRover = (
   startDirection: string,
-  roverInstructions: string,
+  roverInstruction: string,
 ): string => {
-  if (roverInstructions === 'RR') {
-    return 'S';
-  }
-  if (roverInstructions === 'RL') {
-    return 'N';
-  }
-  if (roverInstructions === 'R') {
+  if (roverInstruction === 'R') {
     return spinRoverRight[startDirection];
   }
   return spinRoverLeft[startDirection];
@@ -40,9 +34,13 @@ const moveRovers = (input: string): string => {
 
     const startDirection = roverStartPosition[4];
 
-    const endDirection = spinRover(startDirection, roverInstructions);
+    let currentDirection = spinRover(startDirection, roverInstructions[0]);
 
-    return `${startLocation} ${endDirection}`;
+    if (roverInstructions.length === 2) {
+      currentDirection = spinRover(currentDirection, roverInstructions[1]);
+    }
+
+    return `${startLocation} ${currentDirection}`;
   }
 
   return roverStartPosition;
