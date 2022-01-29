@@ -175,5 +175,16 @@ RRR
 
       expect(output).toBe('0 0 W');
     });
+
+    it('should spin the rover 5 times (right left right left right)', () => {
+      const input = `
+5 5
+0 0 N
+RLRLR
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe('0 0 E');
+    });
   });
 });

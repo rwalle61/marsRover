@@ -34,14 +34,9 @@ const moveRovers = (input: string): string => {
 
     let currentDirection = roverStartPosition[4];
 
-    currentDirection = spinRover(currentDirection, roverInstructions[0]);
-
-    if (roverInstructions.length >= 2) {
-      currentDirection = spinRover(currentDirection, roverInstructions[1]);
-    }
-    if (roverInstructions.length === 3) {
-      currentDirection = spinRover(currentDirection, roverInstructions[2]);
-    }
+    [...roverInstructions].forEach((roverInstruction) => {
+      currentDirection = spinRover(currentDirection, roverInstruction);
+    });
 
     return `${startLocation} ${currentDirection}`;
   }
