@@ -305,6 +305,27 @@ MR
 `.trim(),
       );
     });
+
+    it('should show 3 rovers in the same position', () => {
+      const input = `
+5 5
+0 0 N
+
+3 3 N
+
+0 0 N
+
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe(
+        `
+0 0 N
+3 3 N
+0 0 N
+`.trim(),
+      );
+    });
   });
 
   describe('when input has multiple rovers with instructions', () => {
