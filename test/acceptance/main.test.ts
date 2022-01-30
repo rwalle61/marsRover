@@ -66,7 +66,7 @@ MMRMMRMRRM`.trim();
     });
   });
 
-  describe.skip('when input is the example test input', () => {
+  describe('when input is the example test input (2 rovers with instructions)', () => {
     const input = `
 5 5
 1 2 N
