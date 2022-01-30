@@ -27,13 +27,15 @@ const spinRoverRight = {
   [Direction.West]: Direction.North,
 };
 
-const moveRover = (startPosition: string, instructions: string): string => {
-  const startLocation = startPosition.substring(0, 3);
+const moveRover = ({
+  startLocation,
+  startDirection,
+  instructions,
+}: RoverInput): string => {
+  let currentX = startLocation.x;
+  let currentY = startLocation.y;
 
-  let currentX = parseInt(startLocation[0], 10);
-  let currentY = parseInt(startLocation[2], 10);
-
-  let currentDirection = startPosition[4];
+  let currentDirection = startDirection;
 
   [...instructions].forEach((instruction) => {
     if (instruction === RoverInstruction.SpinRight) {
@@ -58,8 +60,7 @@ const moveRover = (startPosition: string, instructions: string): string => {
 
 const getEndPositions = (parsedRoverInputs: RoverInput[]) =>
   parsedRoverInputs.reduce((currentEndPositions, roverInput) => {
-    const [startPosition, instructions] = roverInput;
-    const endPosition = moveRover(startPosition, instructions);
+    const endPosition = moveRover(roverInput);
     return [...currentEndPositions, endPosition];
   }, [] as string[]);
 
