@@ -55,22 +55,36 @@ const moveRover = (startPosition: string, instructions: string): string => {
 };
 
 const moveRovers = (input: string): string => {
-  const [, rover1StartPosition, rover1Instructions, rover2StartPosition] =
-    input.split('\n');
+  const [
+    ,
+    roverStartPosition,
+    roverInstructions,
+    rover2StartPosition,
+    rover2Instructions,
+  ] = input.split('\n');
 
-  if (!rover1StartPosition) {
+  if (!roverStartPosition) {
     return '';
   }
 
-  if (rover1Instructions) {
-    return moveRover(rover1StartPosition, rover1Instructions);
+  if (rover2Instructions) {
+    const rover1EndPosition = moveRover(roverStartPosition, roverInstructions);
+    const rover2EndPosition = moveRover(
+      rover2StartPosition,
+      rover2Instructions,
+    );
+    return `${rover1EndPosition}\n${rover2EndPosition}`;
+  }
+
+  if (roverInstructions) {
+    return moveRover(roverStartPosition, roverInstructions);
   }
 
   if (rover2StartPosition) {
-    return `${rover1StartPosition}\n${rover2StartPosition}`;
+    return `${roverStartPosition}\n${rover2StartPosition}`;
   }
 
-  return rover1StartPosition;
+  return roverStartPosition;
 };
 
 export default moveRovers;

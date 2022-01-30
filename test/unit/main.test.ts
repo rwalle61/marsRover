@@ -306,4 +306,24 @@ MR
       );
     });
   });
+
+  describe('when input has multiple rovers with instructions', () => {
+    it('should move 2 rovers', () => {
+      const input = `
+5 5
+0 0 N
+M
+3 3 N
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe(
+        `
+0 1 N
+3 4 N
+`.trim(),
+      );
+    });
+  });
 });
