@@ -1,7 +1,7 @@
 import moveRovers from '../../src/main';
 
 describe('main', () => {
-  describe('when input has no rovers', () => {
+  describe('when there are no rovers', () => {
     it('should show no rovers', () => {
       const input = '5 5';
 
@@ -19,7 +19,7 @@ describe('main', () => {
     });
   });
 
-  describe('when input has one rover without instructions', () => {
+  describe('when there is one rover without instructions', () => {
     it('should show the rover in the same position', () => {
       const input = `
 5 5
@@ -41,7 +41,7 @@ describe('main', () => {
     });
   });
 
-  describe('when input has one rover with instructions', () => {
+  describe('when there is one rover with instructions', () => {
     it('should spin the rover left (North to West)', () => {
       const input = `
 5 5
@@ -285,7 +285,7 @@ MR
     });
   });
 
-  describe('when input has multiple rovers without instructions', () => {
+  describe('when there are multiple rovers without instructions', () => {
     it('should show 2 rovers in the same position', () => {
       const input = `
 5 5
@@ -324,7 +324,7 @@ MR
     });
   });
 
-  describe('when input has multiple rovers with instructions', () => {
+  describe('when there are multiple rovers with instructions', () => {
     it('should move 2 rovers', () => {
       const input = `
 5 5

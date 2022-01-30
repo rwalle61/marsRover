@@ -1,46 +1,46 @@
 import moveRovers from '../../src/main';
 
 describe('Acceptance', () => {
-  describe('when input has a rover with one rotate instruction', () => {
+  describe('when one rover is instructed to turn', () => {
     const input = `
 5 5
 1 2 N
 L`.trim();
 
-    it('should move the rover to the expected position', () => {
+    it('should turn the rover', () => {
       const output = moveRovers(input);
 
       expect(output).toBe('1 2 W');
     });
   });
 
-  describe('when input has a rover with one move instruction', () => {
+  describe('when one rover is instructed to move forwards', () => {
     const input = `
 5 5
 1 2 N
 M`.trim();
 
-    it('should move the rover to the expected position', () => {
+    it('should move the rover forwards', () => {
       const output = moveRovers(input);
 
       expect(output).toBe('1 3 N');
     });
   });
 
-  describe('when input has a rover with a move and rotate instruction', () => {
+  describe('when one rover is instructed to turn and move forwards', () => {
     const input = `
 5 5
 1 2 N
 LM`.trim();
 
-    it('should move the rover to the expected position', () => {
+    it('should turn and move the rover forwards', () => {
       const output = moveRovers(input);
 
       expect(output).toBe('0 2 W');
     });
   });
 
-  describe('when input has the first example rover with instructions', () => {
+  describe('when the first example rover is instructed to move', () => {
     const input = `
 5 5
 1 2 N
@@ -53,7 +53,7 @@ LMLMLMLMM`.trim();
     });
   });
 
-  describe('when input has the second example rover with instructions', () => {
+  describe('when the second example rover is instructed to move', () => {
     const input = `
 5 5
 3 3 E
@@ -66,7 +66,7 @@ MMRMMRMRRM`.trim();
     });
   });
 
-  describe('when input is the example test input (2 rovers with instructions)', () => {
+  describe('when the two example rovers are instructed to move', () => {
     const input = `
 5 5
 1 2 N
@@ -86,7 +86,7 @@ MMRMMRMRRM`.trim();
     });
   });
 
-  describe('when input has any number of rovers with instructions', () => {
+  describe('when any number of rovers are instructed to move', () => {
     const input = `
 5 5
 1 2 N
