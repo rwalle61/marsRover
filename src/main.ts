@@ -25,6 +25,35 @@ const spinRoverRight = {
   [Direction.West]: Direction.North,
 };
 
+const moveRover = (startPosition: string, instructions: string): string => {
+  const startLocation = startPosition.substring(0, 3);
+
+  let currentX = parseInt(startLocation[0], 10);
+  let currentY = parseInt(startLocation[2], 10);
+
+  let currentDirection = startPosition[4];
+
+  [...instructions].forEach((instruction) => {
+    if (instruction === RoverInstruction.SpinRight) {
+      currentDirection = spinRoverRight[currentDirection];
+    } else if (instruction === RoverInstruction.SpinLeft) {
+      currentDirection = spinRoverLeft[currentDirection];
+    } else if (instruction === RoverInstruction.MoveForwards) {
+      if (currentDirection === Direction.East) {
+        currentX += 1;
+      } else if (currentDirection === Direction.West) {
+        currentX -= 1;
+      } else if (currentDirection === Direction.North) {
+        currentY += 1;
+      } else {
+        currentY -= 1;
+      }
+    }
+  });
+
+  return `${currentX} ${currentY} ${currentDirection}`;
+};
+
 const moveRovers = (input: string): string => {
   const [, roverStartPosition, roverInstructions] = input.split('\n');
 
@@ -33,32 +62,7 @@ const moveRovers = (input: string): string => {
   }
 
   if (roverInstructions) {
-    const startLocation = roverStartPosition.substring(0, 3);
-
-    let currentX = parseInt(startLocation[0], 10);
-    let currentY = parseInt(startLocation[2], 10);
-
-    let currentDirection = roverStartPosition[4];
-
-    [...roverInstructions].forEach((roverInstruction) => {
-      if (roverInstruction === RoverInstruction.SpinRight) {
-        currentDirection = spinRoverRight[currentDirection];
-      } else if (roverInstruction === RoverInstruction.SpinLeft) {
-        currentDirection = spinRoverLeft[currentDirection];
-      } else if (roverInstruction === RoverInstruction.MoveForwards) {
-        if (currentDirection === Direction.East) {
-          currentX += 1;
-        } else if (currentDirection === Direction.West) {
-          currentX -= 1;
-        } else if (currentDirection === Direction.North) {
-          currentY += 1;
-        } else {
-          currentY -= 1;
-        }
-      }
-    });
-
-    return `${currentX} ${currentY} ${currentDirection}`;
+    return moveRover(roverStartPosition, roverInstructions);
   }
 
   return roverStartPosition;
