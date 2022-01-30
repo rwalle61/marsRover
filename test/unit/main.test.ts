@@ -286,4 +286,24 @@ MR
       expect(output).toBe('0 1 E');
     });
   });
+
+  describe('when input has multiple rovers without instructions', () => {
+    it('should show 2 rovers in the same position', () => {
+      const input = `
+5 5
+0 0 N
+
+3 3 N
+
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe(
+        `
+0 0 N
+3 3 N
+`.trim(),
+      );
+    });
+  });
 });
