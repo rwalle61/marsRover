@@ -346,5 +346,26 @@ M
 `.trim(),
       );
     });
+
+    it('should move 3 rovers', () => {
+      const input = `
+5 5
+0 0 N
+M
+3 3 N
+M
+0 0 N
+M
+`.trim();
+      const output = moveRovers(input);
+
+      expect(output).toBe(
+        `
+0 1 N
+3 4 N
+0 1 N
+`.trim(),
+      );
+    });
   });
 });
