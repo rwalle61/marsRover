@@ -55,55 +55,29 @@ const moveRover = (startPosition: string, instructions: string): string => {
 };
 
 const moveRovers = (input: string): string => {
-  const [
-    ,
-    roverStartPosition,
-    roverInstructions,
-    rover2StartPosition,
-    rover2Instructions,
-    rover3StartPosition,
-    rover3Instructions,
-  ] = input.split('\n');
+  const [, ...roverInputs] = input.split('\n');
 
-  if (!roverStartPosition) {
-    return '';
-  }
+  const parsedRoverInputs = roverInputs.reduce(
+    (currentParsedInputs, roverStartPosition, index, array) => {
+      if (index % 2 === 0) {
+        const roverInstructions = array[index + 1];
+        const parsedRoverInput = [roverStartPosition, roverInstructions];
+        return [...currentParsedInputs, parsedRoverInput];
+      }
+      return currentParsedInputs;
+    },
+    [] as [string, string][],
+  );
 
-  if (rover3Instructions) {
-    const rover1EndPosition = moveRover(roverStartPosition, roverInstructions);
-    const rover2EndPosition = moveRover(
-      rover2StartPosition,
-      rover2Instructions,
-    );
-    const rover3EndPosition = moveRover(
-      rover3StartPosition,
-      rover3Instructions,
-    );
-    return `${rover1EndPosition}\n${rover2EndPosition}\n${rover3EndPosition}`;
-  }
-
-  if (rover2Instructions) {
-    const rover1EndPosition = moveRover(roverStartPosition, roverInstructions);
-    const rover2EndPosition = moveRover(
-      rover2StartPosition,
-      rover2Instructions,
-    );
-    return `${rover1EndPosition}\n${rover2EndPosition}`;
-  }
-
-  if (roverInstructions) {
-    return moveRover(roverStartPosition, roverInstructions);
-  }
-
-  if (rover3StartPosition) {
-    return `${roverStartPosition}\n${rover2StartPosition}\n${rover3StartPosition}`;
-  }
-
-  if (rover2StartPosition) {
-    return `${roverStartPosition}\n${rover2StartPosition}`;
-  }
-
-  return roverStartPosition;
+  const endPositions = parsedRoverInputs.reduce(
+    (currentEndPositions, roverInput) => {
+      const [startPosition, instructions] = roverInput;
+      const endPosition = moveRover(startPosition, instructions);
+      return [...currentEndPositions, endPosition];
+    },
+    [] as string[],
+  );
+  return endPositions.join('\n');
 };
 
 export default moveRovers;

@@ -86,7 +86,7 @@ MMRMMRMRRM`.trim();
     });
   });
 
-  describe.skip('when input has any number of rovers with instructions', () => {
+  describe('when input has any number of rovers with instructions', () => {
     const input = `
 5 5
 1 2 N
