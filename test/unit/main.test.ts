@@ -24,8 +24,7 @@ describe('main', () => {
       const input = `
 5 5
 0 0 N
-
-`.trim();
+`.trimStart();
       const output = moveRovers(input);
 
       expect(output).toBe('0 0 N');
@@ -35,8 +34,7 @@ describe('main', () => {
       const input = `
 5 5
 1 0 N
-
-`.trim();
+`.trimStart();
       const output = moveRovers(input);
 
       expect(output).toBe('1 0 N');
@@ -294,8 +292,7 @@ MR
 0 0 N
 
 3 3 N
-
-`.trim();
+`.trimStart();
       const output = moveRovers(input);
 
       expect(output).toBe(
@@ -314,8 +311,7 @@ MR
 3 3 N
 
 0 0 N
-
-`.trim();
+`.trimStart();
       const output = moveRovers(input);
 
       expect(output).toBe(
