@@ -1,32 +1,34 @@
-export type RoverInput = {
-  startLocation: { x: number; y: number };
-  startDirection: string;
-  instructions: string[];
+import { Command, commandFactory } from './Command';
+import { Direction, Position } from './domain';
+
+export type RoverCommand = {
+  startPosition: Position;
+  commands: Command[];
 };
 
-const parseInput = (input: string): RoverInput[] => {
+const parseInput = (input: string): RoverCommand[] => {
   const [, ...roverInputs] = input.split('\n');
 
-  const parsedRoverInputs = roverInputs.reduce(
+  const roverCommands = roverInputs.reduce(
     (currentParsedInputs, roverStartPosition, index, array) => {
       if (index % 2 === 0) {
-        const instructions = array[index + 1].split('');
+        const commands = array[index + 1].split('').map(commandFactory);
+        // edge case where start x or y are more than 1 digit
         const startX = parseInt(roverStartPosition[0], 10);
         const startY = parseInt(roverStartPosition[2], 10);
-        const startDirection = roverStartPosition[4];
+        const startDirection = roverStartPosition[4] as Direction;
 
-        const parsedRoverInput: RoverInput = {
-          startLocation: { x: startX, y: startY },
-          startDirection,
-          instructions,
+        const roverCommand: RoverCommand = {
+          startPosition: { x: startX, y: startY, direction: startDirection },
+          commands,
         };
-        return [...currentParsedInputs, parsedRoverInput];
+        return [...currentParsedInputs, roverCommand];
       }
       return currentParsedInputs;
     },
-    [] as RoverInput[],
+    [] as RoverCommand[],
   );
-  return parsedRoverInputs;
+  return roverCommands;
 };
 
 export default parseInput;

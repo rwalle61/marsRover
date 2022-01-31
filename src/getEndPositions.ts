@@ -1,67 +1,18 @@
-import { RoverInput } from './parseInput';
+import { Position } from './domain';
+import { RoverCommand } from './parseInput';
 
-enum RoverInstruction {
-  SpinRight = 'R',
-  SpinLeft = 'L',
-  MoveForwards = 'M',
-}
+// app layer
+const moveRover = ({ startPosition, commands }: RoverCommand): Position =>
+  // no need to split out state yet. keep pure
+  commands.reduce(
+    (currentPosition, command) => command(currentPosition),
+    startPosition,
+  );
 
-enum Direction {
-  North = 'N',
-  East = 'E',
-  South = 'S',
-  West = 'W',
-}
-
-const spinRoverLeft = {
-  [Direction.North]: Direction.West,
-  [Direction.East]: Direction.North,
-  [Direction.South]: Direction.East,
-  [Direction.West]: Direction.South,
-};
-
-const spinRoverRight = {
-  [Direction.North]: Direction.East,
-  [Direction.East]: Direction.South,
-  [Direction.South]: Direction.West,
-  [Direction.West]: Direction.North,
-};
-
-const moveRover = ({
-  startLocation,
-  startDirection,
-  instructions,
-}: RoverInput): string => {
-  let currentX = startLocation.x;
-  let currentY = startLocation.y;
-
-  let currentDirection = startDirection;
-
-  [...instructions].forEach((instruction) => {
-    if (instruction === RoverInstruction.SpinRight) {
-      currentDirection = spinRoverRight[currentDirection];
-    } else if (instruction === RoverInstruction.SpinLeft) {
-      currentDirection = spinRoverLeft[currentDirection];
-    } else if (instruction === RoverInstruction.MoveForwards) {
-      if (currentDirection === Direction.East) {
-        currentX += 1;
-      } else if (currentDirection === Direction.West) {
-        currentX -= 1;
-      } else if (currentDirection === Direction.North) {
-        currentY += 1;
-      } else {
-        currentY -= 1;
-      }
-    }
-  });
-
-  return `${currentX} ${currentY} ${currentDirection}`;
-};
-
-const getEndPositions = (parsedRoverInputs: RoverInput[]) =>
-  parsedRoverInputs.reduce((currentEndPositions, roverInput) => {
+const getEndPositions = (roverCommands: RoverCommand[]): Position[] =>
+  roverCommands.reduce((currentEndPositions, roverInput) => {
     const endPosition = moveRover(roverInput);
     return [...currentEndPositions, endPosition];
-  }, [] as string[]);
+  }, [] as Position[]);
 
 export default getEndPositions;
