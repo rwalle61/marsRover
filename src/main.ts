@@ -1,18 +1,29 @@
-import formatEndPositions from './formatEndPositions';
-import getEndPositions from './getEndPositions';
-import parseInput from './parseInput';
+import { formatTextOutput, type FormatOutputPort } from './formatOutput';
+import { moveRobots } from './moveRobots';
+import { parseTextInput, type ParseInputPort } from './parseInput';
 
-// app layer
-// Single responsibility - just coordinate domain stuff
-// could do a formatterService
-const moveRovers = (input: string): string => {
-  const commands = parseInput(input);
-
-  const endPositions = getEndPositions(commands);
-
-  const output = formatEndPositions(endPositions);
-
-  return output;
+// note - not needed for a simple task but just showing that I can organise this
+// code with hexagonal architecture
+type Dependencies = {
+  parseInput: ParseInputPort;
+  formatOutput: FormatOutputPort;
 };
 
-export default moveRovers;
+type Handler = (dependencies: Dependencies) => (input: string) => string;
+
+const handler: Handler =
+  ({ parseInput, formatOutput }) =>
+  (input) => {
+    const { grid, robotInput: robotCommands } = parseInput(input);
+
+    const robots = moveRobots(grid, robotCommands);
+
+    const output = formatOutput(robots);
+
+    return output;
+  };
+
+export const main = handler({
+  parseInput: parseTextInput,
+  formatOutput: formatTextOutput,
+});

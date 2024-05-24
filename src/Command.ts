@@ -1,13 +1,13 @@
 import { Direction, Position } from './domain';
 
-const spinRoverLeft = {
+const turnLeft = {
   [Direction.North]: Direction.West,
   [Direction.East]: Direction.North,
   [Direction.South]: Direction.East,
   [Direction.West]: Direction.South,
 };
 
-const spinRoverRight = {
+const turnRight = {
   [Direction.North]: Direction.East,
   [Direction.East]: Direction.South,
   [Direction.South]: Direction.West,
@@ -16,18 +16,17 @@ const spinRoverRight = {
 
 export type Command = (currentPosition: Position) => Position;
 
-const spinRightCommand: Command = (currentPosition) => ({
+const turnRightCommand: Command = (currentPosition) => ({
   ...currentPosition,
-  direction: spinRoverRight[currentPosition.direction],
+  direction: turnRight[currentPosition.direction],
 });
 
-const spinLeftCommand: Command = (currentPosition) => ({
+const turnLeftCommand: Command = (currentPosition) => ({
   ...currentPosition,
-  direction: spinRoverLeft[currentPosition.direction],
+  direction: turnLeft[currentPosition.direction],
 });
 
-const moveCommand: Command = ({ x, y, direction }) => {
-  // assume rovers can go off plateau, no obstacles
+const moveCommand: Command = ({ coordinates: { x, y }, direction }) => {
   let nextX = x;
   let nextY = y;
 
@@ -42,23 +41,23 @@ const moveCommand: Command = ({ x, y, direction }) => {
   }
 
   return {
-    x: nextX,
-    y: nextY,
+    coordinates: { x: nextX, y: nextY },
     direction,
   };
 };
 
-enum RoverInstruction {
-  SpinRight = 'R',
-  SpinLeft = 'L',
-  MoveForwards = 'M',
+export enum RobotInstruction {
+  TurnRight = 'R',
+  TurnLeft = 'L',
+  MoveForwards = 'F',
 }
 
+// note - future command types easy to add
 const instructionToCommand = {
-  [RoverInstruction.SpinRight]: spinRightCommand,
-  [RoverInstruction.SpinLeft]: spinLeftCommand,
-  [RoverInstruction.MoveForwards]: moveCommand,
+  [RobotInstruction.TurnRight]: turnRightCommand,
+  [RobotInstruction.TurnLeft]: turnLeftCommand,
+  [RobotInstruction.MoveForwards]: moveCommand,
 };
 
-export const commandFactory = (instruction: RoverInstruction): Command =>
+export const commandFactory = (instruction: RobotInstruction): Command =>
   instructionToCommand[instruction];

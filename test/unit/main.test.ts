@@ -1,339 +1,304 @@
-import moveRovers from '../../src/main';
+import { main } from '../../src/main';
+import {
+  MAX_COORDINATE_VALUE,
+  MAX_INSTRUCTION_CHARS,
+} from '../../src/parseInput';
 
 describe('main', () => {
-  describe('when there are no rovers', () => {
-    it('should show no rovers', () => {
+  describe('when there are no robots', () => {
+    it('should show no robots', () => {
       const input = '5 5';
 
-      const output = moveRovers(input);
+      const output = main(input);
 
       expect(output).toBe('');
     });
 
-    it('should show no rovers (different input)', () => {
+    it('should show no robots (different input)', () => {
       const input = '0 0';
 
-      const output = moveRovers(input);
+      const output = main(input);
 
       expect(output).toBe('');
     });
   });
 
-  describe('when there is one rover without instructions', () => {
-    it('should show the rover in the same position', () => {
+  describe('when there is one robot', () => {
+    it('should turn left (North to West)', () => {
       const input = `
-5 5
-0 0 N
-`.trimStart();
-      const output = moveRovers(input);
-
-      expect(output).toBe('0 0 N');
-    });
-
-    it('should show the rover in the same position (different input)', () => {
-      const input = `
-5 5
-1 0 N
-`.trimStart();
-      const output = moveRovers(input);
-
-      expect(output).toBe('1 0 N');
-    });
-  });
-
-  describe('when there is one rover with instructions', () => {
-    it('should spin the rover left (North to West)', () => {
-      const input = `
-5 5
-0 0 N
-L
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        L
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 W');
     });
 
-    it('should spin the rover left (East to North)', () => {
+    it('should turn left (East to North)', () => {
       const input = `
-5 5
-0 0 E
-L
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 E
+        L
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 N');
     });
 
-    it('should spin the rover left (South to East)', () => {
+    it('should turn left (South to East)', () => {
       const input = `
-5 5
-0 0 S
-L
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 S
+        L
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 E');
     });
 
-    it('should spin the rover left (West to South)', () => {
+    it('should turn left (West to South)', () => {
       const input = `
-5 5
-0 0 W
-L
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 W
+        L
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 S');
     });
 
-    it('should spin the rover left (different starting location)', () => {
+    it('should turn left (different starting location)', () => {
       const input = `
-5 5
-1 0 N
-L
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        1 0 N
+        L
+        `;
+      const output = main(input);
 
       expect(output).toBe('1 0 W');
     });
 
-    it('should spin the rover right (North to East)', () => {
+    it('should turn right (North to East)', () => {
       const input = `
-5 5
-0 0 N
-R
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        R
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 E');
     });
 
-    it('should spin the rover right (East to South)', () => {
+    it('should turn right (East to South)', () => {
       const input = `
-5 5
-0 0 E
-R
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 E
+        R
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 S');
     });
 
-    it('should spin the rover right (South to West)', () => {
+    it('should turn right (South to West)', () => {
       const input = `
-5 5
-0 0 S
-R
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 S
+        R
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 W');
     });
 
-    it('should spin the rover right (West to North)', () => {
+    it('should turn right (West to North)', () => {
       const input = `
-5 5
-0 0 W
-R
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 W
+        R
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 N');
     });
 
-    it('should spin the rover 2 times (right right)', () => {
+    it('should turn 2 times (right right)', () => {
       const input = `
-5 5
-0 0 N
-RR
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        RR
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 S');
     });
 
-    it('should spin the rover 2 times (right left)', () => {
+    it('should turn 2 times (right left)', () => {
       const input = `
-5 5
-0 0 N
-RL
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        RL
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 N');
     });
 
-    it('should spin the rover 3 times (right right right)', () => {
+    it('should turn 3 times (right right right)', () => {
       const input = `
-5 5
-0 0 N
-RRR
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        RRR
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 W');
     });
 
-    it('should spin the rover 5 times (right left right left right)', () => {
+    it('should turn 5 times (right left right left right)', () => {
       const input = `
-5 5
-0 0 N
-RLRLR
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        RLRLR
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 E');
     });
 
-    it('should move the rover once (start facing North)', () => {
+    it('should move once (start facing North)', () => {
       const input = `
-5 5
-0 0 N
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 1 N');
     });
 
-    it('should move the rover once (start facing East)', () => {
+    it('should move once (start facing East)', () => {
       const input = `
-5 5
-0 0 E
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 E
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('1 0 E');
     });
 
-    it('should move the rover once (start facing South)', () => {
+    it('should move once (start facing South)', () => {
       const input = `
-5 5
-0 1 S
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 1 S
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 S');
     });
 
-    it('should move the rover once (start facing West)', () => {
+    it('should move once (start facing West)', () => {
       const input = `
-5 5
-1 0 W
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        1 0 W
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 0 W');
     });
 
-    it('should move the rover once (different x start location)', () => {
+    it('should move once (different x start location)', () => {
       const input = `
-5 5
-2 0 N
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        2 0 N
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('2 1 N');
     });
 
-    it('should move the rover once (different y start location)', () => {
+    it('should move once (different y start location)', () => {
       const input = `
-5 5
-0 2 N
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 2 N
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 3 N');
     });
 
-    it('should move the rover twice', () => {
+    it('should move twice', () => {
       const input = `
-5 5
-0 0 N
-MM
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        FF
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 2 N');
     });
 
-    it('should move the rover 3 times', () => {
+    it('should move 3 times', () => {
       const input = `
-5 5
-0 0 N
-MMM
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        FFF
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 3 N');
     });
 
-    it('should move then turn the rover right', () => {
+    it('should move then turn right', () => {
       const input = `
-5 5
-0 0 N
-MR
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        FR
+        `;
+      const output = main(input);
 
       expect(output).toBe('0 1 E');
     });
-  });
 
-  describe('when there are multiple rovers without instructions', () => {
-    it('should show 2 rovers in the same position', () => {
+    it('should accept max instruction length', () => {
       const input = `
-5 5
-0 0 N
+        5 5
+        0 0 N
+        ${'R'.repeat(MAX_INSTRUCTION_CHARS)}
+        `;
+      const output = main(input);
 
-3 3 N
-`.trimStart();
-      const output = moveRovers(input);
-
-      expect(output).toBe(
-        `
-0 0 N
-3 3 N
-`.trim(),
-      );
+      expect(output).toBe('0 0 W');
     });
 
-    it('should show 3 rovers in the same position', () => {
+    it('should accept max coordinate value', () => {
       const input = `
-5 5
-0 0 N
+        ${MAX_COORDINATE_VALUE} ${MAX_COORDINATE_VALUE}
+        ${MAX_COORDINATE_VALUE} ${MAX_COORDINATE_VALUE} N
+        R
+        `;
+      const output = main(input);
 
-3 3 N
-
-0 0 N
-`.trimStart();
-      const output = moveRovers(input);
-
-      expect(output).toBe(
-        `
-0 0 N
-3 3 N
-0 0 N
-`.trim(),
-      );
+      expect(output).toBe(`${MAX_COORDINATE_VALUE} ${MAX_COORDINATE_VALUE} E`);
     });
   });
 
-  describe('when there are multiple rovers with instructions', () => {
-    it('should move 2 rovers', () => {
+  describe('when there are multiple robots', () => {
+    it('should move 2 robots', () => {
       const input = `
-5 5
-0 0 N
-M
-3 3 N
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        F
+        3 3 N
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe(
         `
@@ -343,23 +308,99 @@ M
       );
     });
 
-    it('should move 3 rovers', () => {
+    it('should move 3 robots', () => {
       const input = `
-5 5
-0 0 N
-M
-3 3 N
-M
-0 0 N
-M
-`.trim();
-      const output = moveRovers(input);
+        5 5
+        0 0 N
+        F
+        3 3 N
+        F
+        0 0 N
+        F
+        `;
+      const output = main(input);
 
       expect(output).toBe(
         `
 0 1 N
 3 4 N
 0 1 N
+`.trim(),
+      );
+    });
+  });
+
+  describe('when a robot leaves the grid', () => {
+    it('should be lost off top', () => {
+      const input = `
+        0 0
+        0 0 N
+        F`;
+      const output = main(input);
+
+      expect(output).toBe('0 0 N LOST');
+    });
+
+    it('should be lost off bottom', () => {
+      const input = `
+        0 0
+        0 0 S
+        F`;
+      const output = main(input);
+
+      expect(output).toBe('0 0 S LOST');
+    });
+
+    it('should be lost off left', () => {
+      const input = `
+        0 0
+        0 0 W
+        F`;
+      const output = main(input);
+
+      expect(output).toBe('0 0 W LOST');
+    });
+
+    it('should be lost off right', () => {
+      const input = `
+        0 0
+        0 0 E
+        F`;
+      const output = main(input);
+
+      expect(output).toBe('0 0 E LOST');
+    });
+
+    it('should show 2nd robot not leaving grid from scented point', () => {
+      const input = `
+        0 0
+        0 0 N
+        F
+        0 0 N
+        F`;
+      const output = main(input);
+
+      expect(output).toBe(
+        `
+0 0 N LOST
+0 0 N
+`.trim(),
+      );
+    });
+
+    it('should show 2nd robot continuing after not leaving grid from scented point', () => {
+      const input = `
+        0 0
+        0 0 N
+        F
+        0 0 N
+        FR`;
+      const output = main(input);
+
+      expect(output).toBe(
+        `
+0 0 N LOST
+0 0 E
 `.trim(),
       );
     });
