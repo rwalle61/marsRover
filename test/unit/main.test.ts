@@ -376,14 +376,14 @@ describe('main', () => {
         0 0
         0 0 N
         F
-        0 0 N
+        0 0 E
         F`;
       const output = main(input);
 
       expect(output).toBe(
         `
 0 0 N LOST
-0 0 N
+0 0 E
 `.trim(),
       );
     });
@@ -393,14 +393,14 @@ describe('main', () => {
         0 0
         0 0 N
         F
-        0 0 N
+        0 0 E
         FR`;
       const output = main(input);
 
       expect(output).toBe(
         `
 0 0 N LOST
-0 0 E
+0 0 S
 `.trim(),
       );
     });

@@ -11,8 +11,7 @@ const moveRobot = (
   let position = startPosition;
 
   for (const command of commands) {
-    // note - could move this logic into the command (i.e. Command Pattern) but
-    // for now this is simpler (& more flexible to change in future)
+    // note - if useful in future, could move this logic into the command (i.e. Command Pattern)
     const nextPosition = command(position);
 
     if (isOffGrid(grid, nextPosition.coordinates)) {
@@ -38,6 +37,7 @@ export type Robot = Readonly<{
 }>;
 
 export const moveRobots = (grid: Grid, robotInputs: RobotInput[]): Robot[] => {
+  // note - if useful in future, could abstract this with a Repository
   const robots: Robot[] = [];
 
   for (const robotInput of robotInputs) {

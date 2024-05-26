@@ -1,6 +1,6 @@
 import { main } from '../../src/main';
 
-// note - acceptance tests for main features, unit tests for robustness & edge cases
+// note - I've used acceptance tests for main features, unit tests for robustness & edge cases
 describe('Acceptance', () => {
   it('should turn one robot', () => {
     const input = `
@@ -102,7 +102,7 @@ describe('Acceptance', () => {
   });
 
   // note - you can use this to run my code against new data
-  it.skip('should run with new input', () => {
+  it('should run with new input', () => {
     const input = `
     5 3
     1 1 E

@@ -2,8 +2,7 @@ import { formatTextOutput, type FormatOutputPort } from './formatOutput';
 import { moveRobots } from './moveRobots';
 import { parseTextInput, type ParseInputPort } from './parseInput';
 
-// note - not needed for a simple task but just showing that I can organise this
-// code with hexagonal architecture
+// note - not needed for this task, but just illustrating hexagonal architecture
 type Dependencies = {
   parseInput: ParseInputPort;
   formatOutput: FormatOutputPort;

@@ -19,7 +19,7 @@ export type RobotInput = Readonly<{
   commands: Command[];
 }>;
 
-// note - this assumes the input is valid, but with more time, I'd add lots of validation
+// note - with more time I'd validate the input rather than assuming it's valid
 
 export const parseTextInput: ParseInputPort = (input) => {
   const [gridLine, ...inputLines] = input
